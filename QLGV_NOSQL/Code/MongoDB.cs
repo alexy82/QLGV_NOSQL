@@ -16,5 +16,9 @@ namespace QLGV_NOSQL.Code
 		{
 			return db.GetCollection<T>(collectionName);
 		}
+		public static void XoaData()
+		{
+			client.DropDatabase("QLGV");
+		}
 	}
 }

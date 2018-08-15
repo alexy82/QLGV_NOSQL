@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QLGV_NOSQL.BO.GiangVien
 {
-	class GiangVien
+	public class GiangVien
 	{
 
 		[BsonId]
@@ -22,12 +22,14 @@ namespace QLGV_NOSQL.BO.GiangVien
 	
 
 
-
+		public string IsActive { get; set; }
 		public string HoTenGV { get => HoGv + " " + TenGv; }
+	
+		
 
 
 	}
-	class LopHoc
+	public class LopHoc
 	{
 
 		[BsonElement("ma_lop_hoc")]
@@ -58,7 +60,7 @@ namespace QLGV_NOSQL.BO.GiangVien
 
 
 	}
-	class BuoiHoc
+	public class BuoiHoc
 	{
 		[BsonElement("ngay_hoc")]
 		public DateTime NgayHoc { get; set; }
@@ -77,11 +79,11 @@ namespace QLGV_NOSQL.BO.GiangVien
 		[BsonElement("so_tiet")]
 		public int SoTiet { get; set; }
 		[BsonElement("buoi_hoc_bu")]
-		public BuoiHocBu buoiHocBu { get; set; }
+		public BuoiHocBu BuoiHocBu { get; set; }
 
 
 	}
-	class BuoiHocBu
+	public class BuoiHocBu
 	{
 		[BsonElement("ngay_hoc")]
 		public DateTime NgayHoc { get; set; }

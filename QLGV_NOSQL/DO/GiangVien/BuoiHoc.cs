@@ -1,40 +1,46 @@
-﻿using System;
+﻿using QLGV_NOSQL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QLGV_NOSQL.Code;
+using MongoDB.Driver;
 
 namespace QLGV_NOSQL.DO.GiangVien
 {
 	class BuoiHoc
 	{
-		public List<BuoiHoc> TaoBuoiHoc()
+		public void TaoBuoiHoc(BO.GiangVien.LopHoc lh)
 		{
-			DateTime ngayNhapHoc = new DateTime(2018, 1, 2);
-			int thuNgayNhapHoc = thu;
+			var configCollection = MongoDB<BO.ConfigSystem>.GetCollection(Config.CONFIG_COLLECTION);
+			BO.ConfigSystem config = configCollection.Find(x => true).SingleOrDefault();
+
+			DateTime ngayHoc = config.NgayBatDau;
+			int thuNgayNhapHoc = Common.GetIntDayByDate(config.NgayBatDau);
 
 			if (lh.Thu < thuNgayNhapHoc)
 			{
-				ngayNhapHoc = ngayNhapHoc.AddDays(7 - lh.Thu);
+				ngayHoc = ngayHoc.AddDays(7 - lh.Thu);
 			}
-			else ngayNhapHoc = ngayNhapHoc.AddDays(lh.Thu - thuNgayNhapHoc);
+			else ngayHoc = ngayHoc.AddDays(lh.Thu - thuNgayNhapHoc);
 
-			for (int j = 0; j < 15; j++)
+			for (int j = 0; j < config.SoBuoi; j++)
 			{
-				BuoiHoc th = new BuoiHoc()
+				BO.GiangVien.BuoiHoc th = new BO.GiangVien.BuoiHoc()
 				{
-					NgayHoc = ngayNhapHoc,
-					Phong = tenPhong,
-					SoTiet = soTiet,
-					TietBatDau = tietBatDau,
-					Thu = thu,
-					TrangThai = "BINH_THUONG",
+					NgayHoc = ngayHoc,
+					Phong = lh.Phong,
+					SoTiet = lh.SoTiet,
+					Thu = lh.Thu,
 					TuanHoc = j + 1,
+					TietBatDau = lh.TietBd
+					
 
 				};
 
 				lh.DSBuoiHoc.Add(th);
-				ngayNhapHoc = ngayNhapHoc.AddDays(7);
+				ngayHoc = ngayHoc.AddDays(7);
 			}
 		}
 	}
