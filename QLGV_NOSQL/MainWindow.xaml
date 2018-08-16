@@ -11,11 +11,11 @@
         Name="mainWindow"
        
        
-     d:DesignHeight="600" d:DesignWidth="800"
+     d:DesignHeight="1000" d:DesignWidth="1000"
                FontFamily="{DynamicResource MaterialDesignFont}"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Bold" 
-      Background="white"
+      Background="#72B771"
       TextElement.FontSize="13"
       Title="Giảng Viên"
         >
@@ -27,7 +27,7 @@
     </Window.Resources>
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" MinHeight="120"/>
+            <RowDefinition Height="1*" MinHeight="120" MaxHeight="150"/>
             <RowDefinition Height="5*" MinHeight="200" />
         </Grid.RowDefinitions>
         <Grid>
@@ -44,23 +44,24 @@
             <materialDesign:Card Margin="5 5 5 5"
                         materialDesign:ShadowAssist.ShadowDepth="Depth4"
                           Grid.Column="0"
+                                Background="#D4F7D4"
                         >
                 <StackPanel Height="65" Margin="0,10,10.2,10" HorizontalAlignment="Left" Grid.Column="0"  >
-                    <DockPanel HorizontalAlignment="Right">
-                        <TextBox  VerticalAlignment="Top" HorizontalAlignment="Right" Height="55" Width="300" Padding=" 10 5 10 5" Margin="0 0 0 10 "   Name="search" FontSize="15" 
+                    <DockPanel HorizontalAlignment="Right" >
+                        <TextBox Foreground="#9A0794" FontSize="17px" FontStyle="Normal" VerticalAlignment="Top"  Height="55" HorizontalAlignment="Stretch" Padding=" 10 5 10 5" Margin="10 0 0 10 "   Name="search"
                                      materialDesign:HintAssist.Hint="Nhập tên giảng viên"/>
-                        <Button Click="Button_Click" ToolTip="Tìm kiếm"  materialDesign:ShadowAssist.ShadowDepth="Depth3" Width="60" Height="45" Margin="10 0 0 3" Padding="0" BorderThickness="0"  >
-                        <materialDesign:PackIcon  VerticalAlignment="Center" Kind="AccountSearch"  Height="45" Width="50"  BorderThickness="3"/>
+                        <Button Click="Button_Click" Background="#340933" ToolTip="Tìm kiếm"  materialDesign:ShadowAssist.ShadowDepth="Depth3" Width="60" Height="45" Margin="10 0 0 3" Padding="0" BorderThickness="0"  >
+                            <materialDesign:PackIcon Foreground="#D4F7D4"  VerticalAlignment="Center" Kind="AccountSearch"  Height="45" Width="50"  BorderThickness="3"/>
                         </Button>
                     </DockPanel>
                 </StackPanel>
             </materialDesign:Card>
             <StackPanel  HorizontalAlignment="Center" Grid.Column="1" Margin="5 5 0 0">
-                <Button ToolTip="Thêm ngày nghỉ toàn trường" Margin="4" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Right" materialDesign:ShadowAssist.ShadowDepth="Depth3" Width="100" Height="40">
+                <Button Background="#340933" Foreground="#D4F7D4" ToolTip="Thêm ngày nghỉ toàn trường" Margin="4" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Right" materialDesign:ShadowAssist.ShadowDepth="Depth3" Width="100" Height="45">
                     <materialDesign:PackIcon HorizontalAlignment="Center"  VerticalAlignment="Center" Kind="Plus"  Height="42" Width="50"/>
 
                 </Button>
-                <Button ToolTip="Thêm dữ liệu bằng file Excel" materialDesign:ShadowAssist.ShadowDepth="Depth3" VerticalAlignment="Top" Height="40" Width="100" HorizontalAlignment="Right" Cursor="Hand" Grid.Row="0" Grid.Column="2" Margin="4" Click="Button_Click_1">
+                <Button Background="#340933" Foreground="#D4F7D4" ToolTip="Thêm dữ liệu bằng file Excel" materialDesign:ShadowAssist.ShadowDepth="Depth3" VerticalAlignment="Top" Height="45" Width="100" HorizontalAlignment="Right" Cursor="Hand" Grid.Row="0" Grid.Column="2" Margin="4" Click="Button_Click_1">
                     <materialDesign:PackIcon  HorizontalAlignment="Center"  VerticalAlignment="Center" Kind="FileExcel"  Height="42" Width="50">
                     </materialDesign:PackIcon>
                 </Button>
@@ -71,6 +72,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <materialDesign:Card
+                    Background="#D4F7D4"
                     Margin="5 5 5 5"
                     materialDesign:ShadowAssist.ShadowDepth="Depth4">
                     <Grid Height="85">
@@ -88,18 +90,23 @@
                 <ColumnDefinition Width="1*" MinWidth="460"/>
                 <ColumnDefinition Width="1*" MinWidth="460"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
             <Grid Grid.Column="0">
                 <materialDesign:Card 
                 Margin="5 5 5 5"
+                Background="#D4F7D4"
                 VerticalAlignment="Stretch"
                 materialDesign:ShadowAssist.ShadowDepth="Depth4">
                     <ScrollViewer  CanContentScroll="False" Padding="10">
                         <ListView SelectionChanged="listview_SelectionChanged"
                                    ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                                   
+                                   VirtualizingPanel.IsVirtualizing="True"
                                    Background="Transparent" BorderThickness="0" 
                                    Name="listview" 
                                    ItemsSource="{Binding ListGiangVien}">
+                            
                             <ListView.Template>
                                 <ControlTemplate>
                                     <ItemsPresenter></ItemsPresenter>
@@ -108,11 +115,12 @@
                             <ListView.ItemTemplate  >
                                 <DataTemplate>
 
-                                    <Border Height="32px"  BorderThickness="3 0 0 0" BorderBrush="LightGray" Padding="10 0 0 0" >
-                                            <StackPanel >
-                                                <TextBlock Name="tenGv" Text="{Binding HoTenGV}" />
-                                                <TextBlock Name="maGv" Text="{Binding MaGv}" />
-                                            </StackPanel>
+                                    <Border  Height="80px"   BorderThickness="3 0 0 0" BorderBrush="#FBA90A" Padding="10 0 0 0" >
+                                        <StackPanel Margin="0 10px 0 0" >
+                                            <TextBlock FontSize="20px" Foreground="#9A0794" Name="tenGv" Text="{Binding HoTenGV}" />
+                                            <TextBlock Foreground="#340933" Name="maGv" Text="{Binding MaGv}" />
+                                            <TextBlock Foreground="#340933" Name="trangThai" Text="{Binding TrangThai}" />
+                                        </StackPanel>
                                         </Border>
                                   
                                 </DataTemplate>
@@ -123,7 +131,7 @@
             </Grid>
 
             <Grid Grid.Column="1">
-                <materialDesign:Card Margin="5 5 5 5"
+                <materialDesign:Card Margin="5 5 5 5" Background="#D4F7D4"
                
                 VerticalAlignment="Stretch"
                 materialDesign:ShadowAssist.ShadowDepth="Depth4">
@@ -138,10 +146,11 @@
                             </ListView.Template>
                             <ListView.ItemTemplate >
                                 <DataTemplate >
-                                    <Border Height="32px" BorderThickness="3 0 0 0" Padding="10 0 0 0" BorderBrush="LightGray" >
-                                        <StackPanel  >
-                                            <TextBlock Name="tenGv" Text="{Binding TenMonHoc}" />
-                                            <TextBlock Name="maGv" Text="{Binding NoiDung}"/>
+                                    <Border  BorderBrush="#FBA90A" Height="60px" BorderThickness="3 0 0 0" Padding="10 0 0 0"  >
+                                        <StackPanel Margin="0 5px 0 0" >
+                                            <TextBlock Name="tenGv" FontSize="17px" Foreground="#9A0794" Text="{Binding TenMonHoc}" />
+                                            <TextBlock  Foreground="#340933" Name="maGv" Text="{Binding NoiDung}"/>
+                                            <TextBlock  Foreground="#340933" Name="trangThai" Text="{Binding TrangThai}" />
                                         </StackPanel>
                                     </Border>
 

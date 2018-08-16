@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,31 @@ namespace QLGV_NOSQL.BO.GiangVien
 		[BsonElement("danh_sach_lop_hoc")]
 		public List<LopHoc> DSLopHoc { get; set; }
 
-	
 
 
-		public string IsActive { get; set; }
+
+		[BsonElement("so_buoi_day")]
+		public int SoBuoiDay { get; set; }
+		[BsonElement("vang")]
+		public int Vang { get; set; }
+		[BsonElement("di_tre")]
+		public int DiTre { get; set; }
+		[BsonElement("ve_som")]
+		public int VeSom { get; set; }
+		[BsonElement("nghi_le")]
+		public int NghiLe { get; set; }
+		
+		[BsonElement("tong_so_buoi_day")]
+		public int TongSoBuoiDay { get; set; }
+
+		public int Thieu { get => TongSoBuoiDay - (Vang + NghiLe + SoBuoiDay); }
+
+
+
+
+
+		public string TrangThai { get => Thieu != 0 ? string.Format("Số buổi vắng: {0} | Số buổi bù: {1} | Thiếu {2}", Vang + NghiLe, TongSoBuoiDay - SoBuoiDay, Thieu) : string.Format("Số buổi vắng: {0} | Số buổi bù: {1} | Đủ", Vang + NghiLe, TongSoBuoiDay - SoBuoiDay); }
+
 		public string HoTenGV { get => HoGv + " " + TenGv; }
 	
 		
@@ -51,8 +73,28 @@ namespace QLGV_NOSQL.BO.GiangVien
 		[BsonElement("phong")]
 		public string Phong { get; set; }
 		[BsonElement("danh_sach_buoi_hoc")]
-		public List<BuoiHoc> DSBuoiHoc { get; set; }
+		public List<string> DSBuoiHoc { get; set; }
 
+
+		[BsonElement("so_buoi_day")]
+		public int SoBuoiDay { get; set; }
+		[BsonElement("vang")]
+		public int Vang { get; set; }
+		[BsonElement("di_tre")]
+		public int DiTre { get; set; }
+		[BsonElement("ve_som")]
+		public int VeSom { get; set; }
+		[BsonElement("nghi_le")]
+		public int NghiLe { get; set; }
+		[BsonElement("tong_so_buoi_day")]
+		public int TongSoBuoiDay { get; set; }
+
+
+
+		public int Thieu { get => TongSoBuoiDay - (Vang + NghiLe + SoBuoiDay); }
+
+
+		public string TrangThai { get => Thieu != 0 ? string.Format("Số buổi vắng: {0} | Số buổi bù: {1} | Thiếu {2}", Vang + NghiLe, TongSoBuoiDay - SoBuoiDay, Thieu) : string.Format("Số buổi vắng: {0} | Số buổi bù: {1} | Đủ", Vang + NghiLe, TongSoBuoiDay - SoBuoiDay); }
 		public string NoiDung { get => "Thứ " + Thu + " Tiết " + TietBd + " Phòng " + Phong; }
 		public string NoiDungLop { get => "Lớp " + Lop; }
 
@@ -60,49 +102,6 @@ namespace QLGV_NOSQL.BO.GiangVien
 
 
 	}
-	public class BuoiHoc
-	{
-		[BsonElement("ngay_hoc")]
-		public DateTime NgayHoc { get; set; }
-		[BsonElement("trang_thai")]
-		public string TrangThai { get; set; }
-		[BsonElement("ghi_chu")]
-		public string GhiChu { get; set; }
-		[BsonElement("tiet_bat_dau")]
-		public int TietBatDau { get; set; }
-		[BsonElement("phong")]
-		public string Phong { get; set; }
-		[BsonElement("thu")]
-		public int Thu { get; set; }
-		[BsonElement("tuan_hoc")]
-		public int TuanHoc { get; set; }
-		[BsonElement("so_tiet")]
-		public int SoTiet { get; set; }
-		[BsonElement("buoi_hoc_bu")]
-		public BuoiHocBu BuoiHocBu { get; set; }
-
-
-	}
-	public class BuoiHocBu
-	{
-		[BsonElement("ngay_hoc")]
-		public DateTime NgayHoc { get; set; }
-		[BsonElement("trang_thai")]
-		public string TrangThai { get; set; }
-		[BsonElement("ghi_chu")]
-		public string GhiChu { get; set; }
-		[BsonElement("tiet_bat_dau")]
-		public int TietBatDau { get; set; }
-		[BsonElement("phong")]
-		public string Phong { get; set; }
-		[BsonElement("thu")]
-		public int Thu { get; set; }
-		[BsonElement("tuan_hoc")]
-		public int TuanHoc { get; set; }
-		[BsonElement("so_tiet")]
-		public int SoTiet { get; set; }
-
-
-	}
+	
 	
 }

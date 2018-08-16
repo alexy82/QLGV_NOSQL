@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace QLGV_NOSQL.Code
 {
+
 	class MongoDB<T>
 	{
 		static MongoClient client = new MongoClient("mongodb://localhost:27017");

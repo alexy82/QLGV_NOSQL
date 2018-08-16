@@ -18,5 +18,6 @@ namespace QLGV_NOSQL.Code
 		public const string GIANG_VIEN_COLLECTION = "GIANG_VIEN";
 		public const string CONFIG_COLLECTION = "CONFIG";
 		public const string PHONG_COLLECTION = "PHONG";
+		public const string BUOI_HOC_COLLECTION = "BUOI_HOC";
 	}
 }

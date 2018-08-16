@@ -1,4 +1,6 @@
-﻿using QLGV_NOSQL.BO;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using QLGV_NOSQL.BO;
 using QLGV_NOSQL.BO.GiangVien;
 using System;
 using System.Collections.Generic;
@@ -20,9 +22,11 @@ namespace QLGV_NOSQL.Code
 			//};
 			////save 
 			//MongoDB<ConfigSystem>.GetCollection(Config.CONFIG_COLLECTION).InsertOne(config);
-			DO.GiangVien.BuoiHoc doBuoiHoc= new DO.GiangVien.BuoiHoc();
+			DO.BuoiHoc.BuoiHoc doBuoiHoc= new DO.BuoiHoc.BuoiHoc();
 			DO.GiangVien.LopHoc doLopHoc = new DO.GiangVien.LopHoc();
 			DO.GiangVien.GiangVien doGiangVien = new DO.GiangVien.GiangVien();
+			var configCollection = MongoDB<BO.ConfigSystem>.GetCollection(Config.CONFIG_COLLECTION);
+			BO.ConfigSystem config = configCollection.Find(x => true).SingleOrDefault();
 
 			//Luu thong tin buôi hoc
 			for (int i = 2; i < dt.GetLength(0); i++)
@@ -54,7 +58,7 @@ namespace QLGV_NOSQL.Code
 				string maLop = dt[i, 10].ToString();
 				int maLopHoc = int.Parse(dt[i, 13].ToString());
 				//new GiangVien(họ lót, tên , mã)
-				
+
 				GiangVien gv = new GiangVien()
 				{
 					HoGv = hoLotGv,
@@ -75,14 +79,18 @@ namespace QLGV_NOSQL.Code
 					Thu = thu,
 					TietBd = tietBatDau,
 					Phong = phong,
-					DSBuoiHoc = new List<BuoiHoc>()
+					SoBuoiDay  = config.SoBuoi,
+					TongSoBuoiDay = config.SoBuoi,
+					DSBuoiHoc = new List<string>()
 
 				};
-				doBuoiHoc.TaoBuoiHoc(lh);
+				
 
 
 
 				gv = doGiangVien.LuuGiangVien(gv);
+				doBuoiHoc.TaoBuoiHoc(lh, gv);
+
 				doLopHoc.LuuLopHoc(gv, lh);
 
 

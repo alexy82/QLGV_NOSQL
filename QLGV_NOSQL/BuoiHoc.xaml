@@ -1,0 +1,220 @@
+﻿<Window x:Class="QLGV_NOSQL.BuoiHoc"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QLGV_NOSQL"
+      
+       
+   
+        
+       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+               xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"    
+         FontFamily="{DynamicResource MaterialDesignFont}"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Bold" 
+      Background="WhiteSmoke"
+      TextElement.FontSize="13"
+        mc:Ignorable="d"
+      
+        Title="Buoi Hoc" WindowState="Maximized"
+        Focusable="True">
+
+       
+        <Window.Resources>
+
+
+
+
+        </Window.Resources>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="20"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Padding" Value="3"/>
+                    <Setter Property="Margin" Value="5 0 5 5"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Setter Property="Background" Value="White"/>
+
+
+                </Style>
+                <Style TargetType="Label">
+
+
+                    <Setter Property="Margin" Value="0 0 0 0"/>
+                    <Setter Property="FontSize" Value="11"/>
+
+
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="5 0 0 0"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+
+            </Grid.Resources>
+
+            <WrapPanel  Margin="0 0 0 10" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="4">
+
+                <TextBox   Margin="5 5 15 5" materialDesign:HintAssist.Hint="Phòng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+
+                <TextBox Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tiết bắt đầu" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+
+
+
+                <ComboBox Margin="5 5 15 5"  SelectedItem="{Binding SelectedTrangThai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Trạng thái" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+                <DatePicker VerticalAlignment="Center"  Width="100" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày học" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+
+
+
+
+            </WrapPanel>
+
+            <Label Grid.Row="2" Grid.Column="1">Ghi chú</Label>
+            <TextBox  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"  TextWrapping="Wrap"></TextBox>
+
+
+            <StackPanel Grid.Column="0" Grid.Row="3" Grid.RowSpan="2">
+                <TextBlock Text="{Binding lh.GiangVien.TenGiangVien}" FontSize="17"  ></TextBlock>
+                <TextBlock Text="{Binding lh.MonHoc.tenMonHoc}" FontSize="15" ></TextBlock>
+                <TextBlock Text="{Binding lh.NoiDung}" FontSize="15"  ></TextBlock>
+            </StackPanel>
+            <DockPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4">
+                <DockPanel.Resources>
+                    <Style TargetType="Button">
+
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Width" Value="80"/>
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="Margin" Value="2 0 2 0"/>
+                    </Style>
+                </DockPanel.Resources>
+                <Button  materialDesign:ShadowAssist.ShadowDepth="Depth4"   HorizontalAlignment="Left" >Sửa</Button>
+
+                <Button  materialDesign:ShadowAssist.ShadowDepth="Depth4"  HorizontalAlignment="Right" >Excel</Button>
+            </DockPanel>
+
+            <DataGrid  BorderBrush="Black" BorderThickness="2"  VirtualizingPanel.IsVirtualizing="False"    Grid.Row="7" Grid.ColumnSpan="6" Name="gridTietHoc" AutoGenerateColumns="False" FontSize="15" CanUserSortColumns="False" IsReadOnly="True" >
+
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#1956b7"/>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="FontSize" Value="17"/>
+                        <Setter Property="Padding" Value="3"/>
+                        <Setter Property="BorderThickness" Value="1 1 0 1"
+                            />
+
+                    </Style>
+                </DataGrid.Resources>
+
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="#f66767"/>
+                        <Setter Property="Foreground" Value="White"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TuanHocBu}" Value="">
+                                <Setter Property="Background" Value="white"></Setter>
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding trangThai}" Value="1">
+                                <Setter Property="Opacity" Value="0.5"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding trangThai}" Value="0">
+                                <Setter Property="Opacity" Value="0.5"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding trangThai}" Value="2">
+                                <Setter Property="Background" Value="#1b8594"></Setter>
+                                <Setter Property="Foreground" Value="White"></Setter>
+                            </DataTrigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Ngày " Width="2*" Binding="{Binding ngayHoc, StringFormat={}{0:dd/MM/yyy}}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Tuần " Width="2*" Binding="{Binding Tuan}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="TuầnHB " Width="2*" Binding="{Binding TuanHocBu}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Thứ" Width="2*" Binding="{Binding Thu}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Phòng" Width="1.5*" Binding="{Binding tenPhong}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Số Tiết" Width="2*" Binding="{Binding SoTiet}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Trạng Thái" Width="2.5*" Binding="{Binding TextTrangThai}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Ghi Chú" Width="7*" Binding="{Binding ghiChu}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Grid>
+    </Window>
+

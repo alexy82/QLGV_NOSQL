@@ -18,52 +18,53 @@
       Title="Thêm Excel"
        >
 
-        <DockPanel>
-            <Border BorderThickness="2 0 2 0" BorderBrush="Black"    Width="524" VerticalAlignment="Stretch" Padding="50">
-                <Grid Margin="0 10 0 0 ">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
-                    </Grid.RowDefinitions>
+    <DockPanel Background="#72B771">
+        <materialDesign:Card  Background="#D4F7D4" materialDesign:ShadowAssist.ShadowDepth="Depth4" Width="524" VerticalAlignment="Stretch"   Padding="50" >
+            <Border      Width="524" VerticalAlignment="Stretch">
+            <Grid Margin="0 10 0 0 ">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" FontSize="27" >Nhập dữ liệu buổi học</Label>
+                    <Label Foreground="#954192" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" FontSize="27" >Nhập dữ liệu buổi học</Label>
 
-                    <WrapPanel HorizontalAlignment="Center"  Margin="0 0 0 10" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="6">
-
-
-                        <DatePicker Name="ngayBatDau" VerticalAlignment="Center"  Width="130" Height="30" FontSize="15" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày nhập học" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-
-                        <DatePicker Name="ngayKetThuc" VerticalAlignment="Center"  Width="130" Height="30" FontSize="15" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày kết thúc" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <WrapPanel HorizontalAlignment="Center"  Margin="0 0 0 10" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="6">
 
 
+                    <DatePicker Name="ngayBatDau" VerticalAlignment="Center"  Width="130" Height="30" FontSize="15" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày nhập học" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                    <DatePicker Name="ngayKetThuc" VerticalAlignment="Center"  Width="130" Height="30" FontSize="15" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày kết thúc" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
 
 
 
-                    </WrapPanel>
 
-                    <TextBox Name="SoBuoiHoc" Width="90px" Margin="5 5 15 5" Height="40" FontSize="15"  materialDesign:HintAssist.Hint="Số buổi học" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" />
+
+                </WrapPanel>
+
+                <TextBox Name="SoBuoiHoc" Width="90px" Margin="5 5 15 5" Height="40" FontSize="15"  materialDesign:HintAssist.Hint="Số buổi học" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" />
 
                 <TextBox  Name="excelName" materialDesign:HintAssist.Hint="Tên file" Margin="5 5 15 5" FontSize="15" TextAlignment="Center" Height="40" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="4" IsReadOnly="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
 
 
-                    </TextBox>
-                    <Button  Click="openFile_Click" Name="openFile" Grid.Row="2" Grid.Column="7" Margin="0 0 3 0" Height="40"  BorderThickness="2"  FontSize="15" FontWeight="Bold" >...</Button>
-                    <Button  Name="luu" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Height="40" FontSize="15" FontWeight="Bold" Click="luu_Click" >Lưu</Button>
-                </Grid>
+                </TextBox>
+                    <Button  Background="#340933" Foreground="#D4F7D4" Click="openFile_Click" Name="openFile" Grid.Row="2" Grid.Column="7" Margin="0 0 3 0" Height="40"  BorderThickness="2"  FontSize="15" FontWeight="Bold" >...</Button>
+                    <Button  Name="luu" Background="#340933" Foreground="#D4F7D4" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Height="40" FontSize="15" FontWeight="Bold" Click="luu_Click" >Lưu</Button>
+            </Grid>
             </Border>
-
-        </DockPanel>
+        </materialDesign:Card>
+    </DockPanel>
     </Window>
 

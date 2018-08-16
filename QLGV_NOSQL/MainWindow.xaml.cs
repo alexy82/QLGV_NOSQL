@@ -43,7 +43,7 @@ namespace QLGV_NOSQL
 		{
 			BO.GiangVien.GiangVien giangVien = (BO.GiangVien.GiangVien)listview.SelectedItem;
 			GiangVien doGiangVien = new GiangVien();
-
+			if(giangVien != null)
 			listviewMh.ItemsSource = doGiangVien.GetGiangVien(giangVien.MaGv).DSLopHoc;
 		}
 
@@ -53,8 +53,10 @@ namespace QLGV_NOSQL
 		{
 			if (search.Text.Trim() != preSearch)
 			{
+				listview.ItemsSource = null;
+				listviewMh.ItemsSource = null;
 				GiangVien doGiangVien = new GiangVien();
-				listview.ItemsSource = doGiangVien.GetGiangVienByName(search.Text);
+				listview.ItemsSource = dsGiangVien.Where(x => x.TenGv.ToUpper().IndexOf(search.Text.ToUpper())!=-1);
 				preSearch = search.Text;
 			}
 		}
